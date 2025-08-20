@@ -1,0 +1,17 @@
+{
+  "name": "cloud-run-billing-stop",
+  "version": "1.0.0",
+  "description": "Stops GCP resources on billing alert.",
+  "main": "src/cloud-run-billing-stop.ts",
+  "scripts": {
+    "start": "tsx src/cloud-run-billing-stop"
+  },
+  "dependencies": {
+    "@types/express": "5.0.3",
+    "@types/node": "20.19.11",
+    "express": "4.19.2",
+    "firebase-functions": "6.4.0",
+    "googleapis": "140.0.1",
+    "tsx": "4.20.4"
+  }
+}

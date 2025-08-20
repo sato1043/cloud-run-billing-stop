@@ -1,7 +1,7 @@
-FROM python:3.12-slim
-WORKDIR /app
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+FROM node:20-slim
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
 COPY . .
 EXPOSE 8080
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:app"]
+CMD [ "npm", "start" ]
