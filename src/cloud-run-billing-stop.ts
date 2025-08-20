@@ -118,7 +118,7 @@ app.post('/', async (req: Request, res: Response) => {
       functions.logger.log(`Cost amount ${costAmount} has exceeded 99% of budget ${budgetAmount}. Executing stop and disable actions.`);
 
       // 予算超過時にCompute Engineインスタンスを停止
-      await stopComputeInstances();
+      // await stopComputeInstances();
 
       // プロジェクトの課金を無効化
       await disableProjectBilling();

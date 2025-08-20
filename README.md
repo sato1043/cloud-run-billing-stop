@@ -22,7 +22,7 @@ Compute Engineインスタンスを停止、さらに今回は付録としてプ
 
     ```typescript
     import { google } from 'googleapis';
-    import functions from 'firebase-functions/v2';
+    import * as functions from 'firebase-functions/v2';
     import express from 'express';
     import bodyParser from 'body-parser';
     import { Request, Response } from 'express';
@@ -217,9 +217,16 @@ Compute Engineインスタンスを停止、さらに今回は付録としてプ
 
 -----
 
-### 2. Cloud Billingで予算とPub/Sub通知を設定する
+### 2. APIとサービスを有効にする
 
 予算超過の通知を自動化する GCP 設定のための最初のステップです
+
+1.  Google Cloud Consoleで「**APIとサービス**」に移動します
+2.  以下の API を有効化
+   - Compute Engine API
+   - Cloud Billing API
+
+### 3. Cloud Billingで予算とPub/Sub通知を設定する
 
 1.  Google Cloud Consoleで「**お支払い**」に移動します
 2.  「**予算とアラート**」を選択し、「**予算を作成**」をクリック
@@ -238,7 +245,7 @@ Compute Engineインスタンスを停止、さらに今回は付録としてプ
     * 完了して予算を保存
 
 
-### 3. Cloud Runサービスをデプロイする
+### 4. Cloud Runサービスをデプロイする
 
 予算超過の通知を受け取り、自動停止を実行するコードをデプロイします
 
@@ -276,7 +283,7 @@ Compute Engineインスタンスを停止、さらに今回は付録としてプ
     * 保存
 
 
-### 4. サービスアカウントに請求の設定変更ができる IAM 権限を付与する
+### 5. サービスアカウントに請求の設定変更ができる IAM 権限を付与する
 
 Cloud RunサービスがGCPリソースを操作できるように、適切な権限を付与します
 
@@ -296,7 +303,7 @@ Cloud Runサービスが使用するサービスアカウント（今回は標�
 -----
 
 
-### 5. 動作確認
+### 6. 動作確認
 
 実際に予算を超過させることなく、設定した自動停止の仕組みが機能するかを検証します。
 
@@ -317,13 +324,12 @@ Cloud Runサービスが使用するサービスアカウント（今回は標�
       ```json
       {
         "budgetDisplayName": "10K",
-        "costAmount": 10001,
-        "alertThresholdExceeded": 1.0,
-        "projectName": "projects/updaterllc-billing-master"
+        "budgetAmount": 10000.0,
+        "costAmount": 10001.0
       }
       ```
 
-    * **パブリッシュ**
+    * **公開**
 
 3.  **Cloud Runサービスのログ確認**:
 
