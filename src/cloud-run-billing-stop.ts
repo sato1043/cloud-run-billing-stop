@@ -1,5 +1,5 @@
 import { google } from 'googleapis';
-import functions from 'firebase-functions/v2';
+import * as functions from 'firebase-functions/v2';
 import express from 'express';
 import bodyParser from 'body-parser';
 import { Request, Response } from 'express';
